@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archive Objects | Commission</title>
+  <meta name="description" content="Commission inquiry for private art furniture and spatial objects." />
+  <link rel="stylesheet" href="official.css" />
+</head>
+<body>
+  <!--
+    文件/模块目的：
+    Archive Objects 官方站独立页面。入口页负责第一眼氛围，官方页面负责解释、信任和转化。
+
+    输入输出与规则：
+    输入为本地静态资源；输出为可双击打开的多页面官网。
+    导航跳转到独立 HTML 页面，不再把所有内容塞在一个长页面里。
+
+    关键步骤为什么这样做：
+    高端定制客户需要分层理解：先看品牌，再看产品、方法、材料、流程、案例，最后进入委托咨询。
+  -->
+  <div class="official-shell ">
+    
+<header class="official-header" aria-label="Official navigation">
+  <a class="official-brand" href="official.html"><span class="brand-icon" aria-hidden="true"></span><span>Archive Objects</span></a>
+  <nav class="official-nav">
+    <a data-page href="collection.html">Collection</a>
+    <a data-page href="atelier.html">Atelier</a>
+    <a data-page href="materials.html">Materials</a>
+    <a data-page href="process.html">Process</a>
+    <a data-page href="project-studies.html">Projects</a>
+    <a data-page href="commission.html">Commission</a>
+  </nav>
+  <div class="official-actions"><a class="pill-link" href="index.html">Entrance</a></div>
+</header>
+
+    
+<main class="official-main">
+  <section class="page-hero compact"><div><p class="page-kicker">Commission</p><h1 class="page-title medium">Start with a space, a need, and a level of ambition.</h1><p class="page-lede">This page turns visitors into project leads. It explains who should inquire, what information is useful, and how a private commission can begin.</p><p class="page-lede cn">这里是现金引擎的入口：不是让用户随便留言，而是帮你筛选高价值项目线索。</p></div></section>
+  <section class="section-block"><div class="content-grid two"><article class="form-card"><h2>Commission inquiry</h2><form><div class="form-grid"><label>Project type<select><option>Private villa / residence</option><option>Boutique hotel</option><option>Private club</option><option>Gallery / exhibition space</option><option>Designer project</option></select></label><label>Object direction<select><option>Bench</option><option>Table</option><option>Cabinet</option><option>Light</option><option>Mixed spatial object</option></select></label><label>Location<input placeholder="City / country" /></label><label>Timeline<input placeholder="Target month / year" /></label><label>Budget range<select><option>Early concept object</option><option>Single commission piece</option><option>Large spatial installation</option><option>Not sure yet</option></select></label><label>Contact<input placeholder="Email / WeChat / phone" /></label><label class="wide">Project notes<textarea placeholder="Space type, dimensions, existing drawings, desired atmosphere, and any reference images."></textarea></label></div><p class="form-note">This static prototype does not submit data yet. When ready, connect it to email, Google Forms, Airtable, Notion, or a backend lead system.</p></form></article><article class="info-card"><h2>What happens next</h2><ul><li>Initial review of project fit, object family, and basic feasibility.</li><li>Request for room photos, dimensions, drawings, and target use.</li><li>Early direction: object type, scale, material, and budget logic.</li><li>Proposal stage if both sides confirm the project has value.</li></ul><table class="spec-table"><tr><th>Best clients</th><td>Owners, designers, architects, hotel operators, club founders, gallery teams.</td></tr><tr><th>Not ideal</th><td>Urgent low-budget commodity furniture orders.</td></tr><tr><th>Output</th><td>Concept direction, object study, material route, production plan, and final piece.</td></tr></table></article></div></section>
+</main>
+
+    <footer class="official-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Archive Objects</div>
+          <p>Usable art objects for high-end spaces. Sculptural furniture, private commissions, and spatial object studies.</p>
+        </div>
+        <div><h3>Atelier</h3><a href="atelier.html">Design method</a><a href="materials.html">Materials</a><a href="process.html">Process</a></div>
+        <div><h3>Objects</h3><a href="collection.html">Collection</a><a href="project-studies.html">Project studies</a><a href="commission.html">Commission</a></div>
+        <div><h3>Contact</h3><p>Project inquiries</p><p>Villas · Hotels · Clubs · Galleries</p><p>Designer collaborations</p></div>
+      </div>
+    </footer>
+  </div>
+  <script src="official.js"></script>
+</body>
+</html>
