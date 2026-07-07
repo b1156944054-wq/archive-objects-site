@@ -3,109 +3,83 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Archive Objects | Entrance v2.1</title>
-  <meta name="description" content="Archive Objects homepage prototype: clean high-resolution interior hero visual, real UI layers, and selectable object markers." />
+  <title>Archive Objects | Sculptural Entrance v2.5</title>
+  <meta name="description" content="Archive Objects interactive sculptural entrance: rotate and switch non-realistic 3D art furniture objects." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!--
     文件/模块目的：
-    方案B首页 v1.7：干净高分辨率室内主视觉 + 真实网页UI层 + 180度轻视角 + 场景内作品选择标记。
+    v2.5 入口页改为艺术肌理背景 + 可旋转非写实 3D 雕塑家具 + 作品切换。
 
     输入输出与规则：
-    输入是本地图片 assets/interior-hero-clean-2x.jpg；输出是可直接双击打开的静态官网首页。
-    不依赖外部库、CDN、后端或在线字体；所有交互都在本地 script.js 内完成。
+    输入为纯 HTML/CSS/JS；输出为可线上运行的静态入口页。
+    不依赖外部库、CDN、后端或真实 GLB 文件；后续有真实模型时可替换中央 CSS 3D 草模。
 
     关键步骤为什么这样做：
-    当前阶段先保证高级品牌首页质感，不用低质CSS家具冒充真实产品；产品先用高级作品热点表示，等有真实渲染图/3D模型再替换。
+    用户要的不是科技渲染器，而是“艺术家具品牌入口装置”。先用可交互 3D 草模建立方向，保留艺术感、留白和材质背景。
   -->
+  <main class="entrance-shell" id="entranceShell">
+    <header class="entrance-header" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="Archive Objects home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Archive Objects</span>
+      </a>
+      <nav class="entrance-nav">
+        <a href="collection.html">Collection</a>
+        <a href="atelier.html">Atelier</a>
+        <a href="materials.html">Materials</a>
+        <a href="project-studies.html">Projects</a>
+        <a href="commission.html">Commission</a>
+      </nav>
+    </header>
 
-  <main class="site-shell" id="siteShell">
-    <section class="hero-stage" id="heroStage" aria-label="Archive Objects interior showroom">
-      <div class="scene-image" id="sceneImage" aria-hidden="true"></div>
-      <div class="scene-shade" aria-hidden="true"></div>
-      <div class="scene-glass" aria-hidden="true"></div>
-
-      <header class="site-header" aria-label="Primary navigation">
-        <a class="brand" href="index.html" aria-label="Archive Objects home">
-          <span class="brand-icon" aria-hidden="true"></span>
-          <span>Archive Objects</span>
-        </a>
-        <nav class="main-nav">
-          <a href="collection.html" class="is-active">Collection</a>
-          <a href="atelier.html">Atelier</a>
-          <a href="materials.html">Materials</a>
-          <a href="process.html">Process</a>
-          <a href="commission.html">Commission</a>
-        </nav>
-        <button class="objects-toggle" id="objectsToggle" type="button">Objects <span></span></button>
-      </header>
-
-      <aside class="intro-card" aria-label="Brand introduction">
-        <p class="card-number">01</p>
-        <h1>Usable art furniture for high-end spaces.</h1>
-        <div class="card-line"></div>
-        <p class="card-copy">We create sculptural benches, tables, cabinets, and light objects for villas, boutique hotels, private clubs, galleries, and designer projects.</p>
-        <p class="card-copy cn">我们为私宅、酒店、会所、展厅和设计师项目创作可使用的艺术家具。</p>
-        <div class="tag-row" aria-label="Brand keywords">
-          <span>Private commission</span>
-          <span>Sculptural furniture</span>
-          <span>Physical + digital archive</span>
+    <section class="art-entrance" aria-label="Interactive sculptural object entrance">
+      <div class="paper-field" aria-hidden="true"></div>
+      <div class="left-copy" aria-label="Brand introduction">
+        <p class="eyebrow">Interactive object archive</p>
+        <h1>Form as object.</h1>
+        <p>Usable art furniture between sculpture, function, and spatial memory.</p>
+        <div class="entry-actions">
+          <a class="primary-link" id="enterOfficial" href="official.html">Enter official site</a>
+          <a class="secondary-link" id="viewObject" href="products/cabinet.html">View object</a>
         </div>
-        <a class="card-action enter-site-link" id="focusObjects" href="official.html" aria-label="Enter official site">Enter official site <span>→</span></a>
+      </div>
+
+      <div class="object-stage" id="objectStage" aria-label="Drag to rotate the current 3D object">
+        <div class="stage-shadow" aria-hidden="true"></div>
+        <div class="model-wrap" id="modelWrap">
+          <div class="sculpture-model model--cabinet" id="sculptureModel" aria-hidden="true">
+            <div class="piece slab slab-main"></div>
+            <div class="piece slab slab-back"></div>
+            <div class="piece disc disc-large"></div>
+            <div class="piece disc disc-small"></div>
+            <div class="piece beam beam-low"></div>
+            <div class="piece beam beam-high"></div>
+            <div class="piece pin pin-left"></div>
+            <div class="piece pin pin-right"></div>
+            <div class="piece arch arch-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="object-panel" aria-live="polite">
+        <p class="object-id" id="objectId">Object 001</p>
+        <h2 id="objectName">Sculptural Cabinet</h2>
+        <p id="objectText">A cabinet-like functional sculpture: display, concealment, and architectural presence.</p>
+        <div class="object-meta"><span id="objectType">Cabinet Object</span><span>Drag to rotate</span></div>
       </aside>
 
-      <div class="object-marker-layer" id="objectMarkerLayer" aria-label="Selectable object zones in the showroom">
-        <button class="object-marker marker-bench is-active" data-object="bench" type="button" aria-label="Select Sculptural Bench">
-          <span class="marker-ring"></span>
-          <span class="marker-line"></span>
-          <span class="marker-dot"></span>
-          <span class="marker-label">001 · Bench</span>
-        </button>
-        <button class="object-marker marker-table" data-object="table" type="button" aria-label="Select Art Table">
-          <span class="marker-ring"></span>
-          <span class="marker-line"></span>
-          <span class="marker-dot"></span>
-          <span class="marker-label">002 · Table</span>
-        </button>
-        <button class="object-marker marker-cabinet" data-object="cabinet" type="button" aria-label="Select Cabinet Object">
-          <span class="marker-ring"></span>
-          <span class="marker-line"></span>
-          <span class="marker-dot"></span>
-          <span class="marker-label">003 · Cabinet</span>
-        </button>
-        <button class="object-marker marker-light" data-object="light" type="button" aria-label="Select Light Object">
-          <span class="marker-ring"></span>
-          <span class="marker-line"></span>
-          <span class="marker-dot"></span>
-          <span class="marker-label">004 · Light</span>
-        </button>
+      <div class="object-switcher" aria-label="Switch entrance object">
+        <button type="button" class="is-active" data-object="cabinet"><span>001</span>Cabinet</button>
+        <button type="button" data-object="bench"><span>002</span>Bench</button>
+        <button type="button" data-object="table"><span>003</span>Table</button>
+        <button type="button" data-object="light"><span>004</span>Light</button>
       </div>
 
-      <aside class="object-card is-hidden" id="objectCard" aria-live="polite">
-        <p class="object-kicker" id="objectKicker">Object 001</p>
-        <h2 id="objectTitle">Sculptural Bench</h2>
-        <p id="objectCopy">A signature usable-art object for villas, galleries, private clubs, and entrance spaces.</p>
-        <div class="object-meta">
-          <span id="objectType">Private commission</span>
-          <span id="objectStatus">Concept ready</span>
-        </div>
-        <a class="object-link" id="objectLink" href="products/bench.html">Open object</a>
-      </aside>
-
-      <div class="view-control" aria-label="View angle selector">
-        <button type="button" data-view="left">Left</button>
-        <button type="button" data-view="center" class="is-active">Center</button>
-        <button type="button" data-view="right">Right</button>
-      </div>
-
-      <div class="motion-hint" aria-hidden="true">
-        <strong>180°</strong>
-        <span>Move mouse lightly · select object zones</span>
-      </div>
+      <div class="rotate-hint" aria-hidden="true">Drag the object · switch archive pieces</div>
     </section>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
